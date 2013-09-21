@@ -27,6 +27,8 @@
 }
 
 void count_time_bysec(time_t time1, time_t time2, char* message);
+void swap(int* , int*);
+void swap_char(char* , char*);
 
 void count_time_by_usec(struct timeval tvstart, struct timeval tvend, char* message);
 void gernerate_random_array(int* array, int arraysize, int floor, int upper);

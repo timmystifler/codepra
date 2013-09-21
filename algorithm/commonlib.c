@@ -28,4 +28,15 @@ void gernerate_random_array(int* array, int arraysize, int floor, int upper)
 	}
 }
 
-
+void swap(int *num1, int *num2)
+{
+	int temp = *num1;
+	*num1 = *num2;
+	*num2 = temp;
+}
+void swap_char(char *num1, char *num2)
+{
+	char temp = *num1;
+	*num1 = *num2;
+	*num2 = temp;
+}
