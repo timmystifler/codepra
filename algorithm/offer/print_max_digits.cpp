@@ -7,7 +7,9 @@ using namespace std;
 void print_max_digits(int n);
 void print_max_digits_recursively(char *number, int length, int index);
 void print_nums(char *number);
+bool increment(char *number);
 void print_max_digits_recursively(char *number, int length, int index);
+void print_max_digits_ver2(int n);
 
 void print_max_digits(int n)
 {
@@ -56,11 +58,59 @@ void print_nums(char *number)
 	}
 }
 
+void print_max_digits_ver2(int n)
+{
+	if(n <= 0)
+		return ;
+	char *num = new char[n+1];
+	memset(num, '0', n);
+	num[n] = '\0';
+
+	while(!increment(num))
+	{
+		print_nums(num);
+	}
+}
+
+bool increment(char *number)
+{
+	bool is_overflow = false;
+	int take_over = 0;
+	int length = strlen(number);
+
+	for(int i = length-1; i >=0; i--)
+	{
+		int sum = number[i] -'0' + take_over;
+		if(i == length-1)
+			sum++;
+
+		if(sum >= 10)
+		{
+			if(i == 0)
+				is_overflow = true;
+			else
+			{
+				sum -= 10;
+				take_over = 1;
+				number[i] = '0' + sum;
+			}
+
+		}
+		else
+		{
+			number[i] = '0' + sum;
+			break;
+
+		}
+	}
+	return is_overflow;
+}
+
 
 int main()
 {
 	int n;
 	scanf("%d", &n);
 
-	print_max_digits(n);
+	print_max_digits_ver2(n);
 }
