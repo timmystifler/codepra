@@ -19,9 +19,12 @@ bool_t insert_node_athead(link_list head, element_type elem);
 bool_t insert_node_attail(link_list head, element_type elem);
 bool_t delete_node_byelem(link_list head, element_type elem);
 bool_t delete_node_bypos(link_list head, position *pos);
+bool_t delete_node_inO1(link_list head, position pos);
 void show_all_elems(link_list head);
 position find_elem_pos(link_list head, element_type elem);
 
+position find_kth_totail(link_list head, int k);
 
+void reverse_list(link_list*);
 
 #endif
