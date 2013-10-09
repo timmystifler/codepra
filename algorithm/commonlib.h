@@ -8,7 +8,8 @@
 (a) = (b);(b) = t;
 
 #define MEASURETIME 10
-
+#define TRUE 0
+#define FALSE -1
 #define MEASURE_C(T, text)      \
 {	                            \
 	int loop_count = 0;         \

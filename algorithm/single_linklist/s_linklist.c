@@ -75,7 +75,7 @@ bool_t destory_list(link_list *head)
 		free(ptemp);
 	}
 	*head = NULL;
-	printf("destory linklist.")
+	printf("destory linklist.\n");
 	return 0;
 }
 
@@ -131,7 +131,7 @@ bool_t delete_node_inO1(link_list head, position toBeDeleted)
 		return FALSE;
 	if(toBeDeleted->next != NULL && toBeDeleted != head)
 	{
-		position temp = toBeDeleted;
+		position temp = toBeDeleted->next;
 		toBeDeleted->elem = toBeDeleted->next->elem;
 		toBeDeleted->next = toBeDeleted->next->next;
 		free(temp);
@@ -209,10 +209,55 @@ void reverse_list(link_list* head)
 
 }
 
-void merge_two_lists(link_list list1, link_list list2)
+link_list merge_two_lists(link_list list1, link_list list2)
 {
-	if(list1 == NULL)
-		re
-	postion plist1, plist2;
-	plist1 = head
+	if(list1 == NULL || list2 == NULL)
+	{
+		fprintf(stderr, "list parameter error\n");
+		exit(EXIT_FAILURE);
+	}
+	if(list1->next == NULL)
+		return list2;
+	if(list2->next == NULL)
+		return list1;
+	position plist1 = list1->next;
+	position plist2 = list2->next;
+	link_list merge_list = malloc(sizeof(node));
+	position pmerge = merge_list;
+	if(!merge_list)
+	{
+		fprintf(stderr, "allocate dummy node error\n");
+	}
+	while(plist1 && plist2)
+	{
+		if(strcmp(plist1->elem,plist2->elem) < 0)
+		{
+			pmerge->next = plist1;
+			plist1 = plist1->next;
+			pmerge = pmerge->next;
+		}
+		else
+		{
+			pmerge->next = plist2;
+			plist2 = plist2->next;
+			pmerge = pmerge->next;
+			
+		}
+	}
+	while(plist1)
+	{
+		pmerge->next = plist1;
+		plist1 = plist1->next;
+		pmerge = pmerge->next;
+	}
+	while(plist2)
+	{
+		pmerge->next = plist2;
+		plist2 = plist2->next;
+		pmerge = pmerge->next;
+	}
+	pmerge->next = NULL;
+	free(list1);
+	free(list2);
+	return merge_list;
 }
